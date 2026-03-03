@@ -1,0 +1,38 @@
+{
+  "id": "flask-with-redis",
+  "name": "Flask with Redis",
+  "description": "Python Flask KV API backed by Redis, ready to deploy on Magic Containers.",
+  "icon": "code",
+  "containers": [
+    {
+      "name": "app",
+      "imageNamespace": "ghcr.io",
+      "imageName": "<your-username>/mc-template-flask-with-redis",
+      "imageTag": "latest",
+      "environmentVariables": [
+        {
+          "name": "REDIS_URL",
+          "value": "redis://redis:6379"
+        }
+      ],
+      "endpoints": [
+        {
+          "displayName": "HTTP",
+          "type": "CDN",
+          "containerPort": 8000
+        }
+      ]
+    },
+    {
+      "name": "redis",
+      "imageNamespace": "docker.io",
+      "imageName": "redis",
+      "imageTag": "7-alpine",
+      "persistentVolumes": [
+        {
+          "mountPath": "/data"
+        }
+      ]
+    }
+  ]
+}
